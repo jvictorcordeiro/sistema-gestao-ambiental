@@ -17,44 +17,68 @@
                                 @method('PUT')
                                 <div class="form-row">
                                     <div class="col-md-6 form-group">
-                                        <label for="cultura">{{ __('Cultura') }}<span
-                                                style="color: red; font-weight: bold;">*</span></label>
-                                        <input id="cultura" class="form-control" type="string" name="cultura"
-                                            value="{{ $aracao->cultura }}" required autofocus autocomplete="cultura">
+                                        <label for="solicitante">{{ __('Solicitante') }}</label>
+                                        <input id="solicitante" class="form-control @error('solicitante') is-invalid @enderror" type="text" name="solicitante"
+                                            value="{{ old('solicitante', $aracao->solicitante) }}" autofocus autocomplete="solicitante" placeholder="Digite o nome do solicitante...">
+                                        @error('solicitante')
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="ponto_localizacao">{{ __('Ponto de Referência') }}<span
-                                                style="color: red; font-weight: bold;">*</span></label>
-                                        <input id="ponto_localizacao" class="form-control" type="string"
-                                            name="ponto_localizacao" value="{{ $aracao->ponto_localizacao }}" required
-                                            autofocus autocomplete="ponto_localizacao"
-                                            placeholder="Digite o ponto de referência...">
+                                        <label for="cultura">{{ __('Cultura') }}</label>
+                                        <input id="cultura" class="form-control @error('cultura') is-invalid @enderror" type="text" name="cultura"
+                                            value="{{ old('cultura', $aracao->cultura) }}" autocomplete="cultura">
+                                        @error('cultura')
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6 form-group">
-                                        <label for="quantidade_horas">{{ __('Quantidade de Horas') }}<span
-                                                style="color: red; font-weight: bold;">*</span></label>
-                                        <input id="quantidade_horas" class="form-control" type="string"
-                                            name="quantidade_horas" value="{{ $aracao->quantidade_horas }}" required
-                                            autofocus autocomplete="quantidade_horas"
-                                            placeholder="Digite a quantidade de Horas...">
+                                        <label for="ponto_localizacao">{{ __('Ponto de Referência') }}</label>
+                                        <input id="ponto_localizacao" class="form-control @error('ponto_localizacao') is-invalid @enderror" type="text"
+                                            name="ponto_localizacao" value="{{ old('ponto_localizacao', $aracao->ponto_localizacao) }}"
+                                            autocomplete="ponto_localizacao" placeholder="Digite o ponto de referência...">
+                                        @error('ponto_localizacao')
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="quantidade_ha">{{ __('Quantidade de Ha') }}<span
-                                                style="color: red; font-weight: bold;">*</span></label>
-                                        <input id="quantidade_ha" class="form-control" type="string" name="quantidade_ha"
-                                            value="{{ $aracao->quantidade_ha }}" required autofocus
+                                        <label for="quantidade_horas">{{ __('Quantidade de Horas') }}</label>
+                                        <input id="quantidade_horas" class="form-control @error('quantidade_horas') is-invalid @enderror" type="text"
+                                            name="quantidade_horas" value="{{ old('quantidade_horas', $aracao->quantidade_horas) }}"
+                                            autocomplete="quantidade_horas" placeholder="Digite a quantidade de Horas...">
+                                        @error('quantidade_horas')
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="quantidade_ha">{{ __('Quantidade de Ha') }}</label>
+                                        <input id="quantidade_ha" class="form-control @error('quantidade_ha') is-invalid @enderror" type="text" name="quantidade_ha"
+                                            value="{{ old('quantidade_ha', $aracao->quantidade_ha) }}"
                                             autocomplete="quantidade_ha" placeholder="Digite a quantidade de Ha...">
+                                        @error('quantidade_ha')
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="beneficiario_id">{{ __('Beneficiário') }}<span
-                                                style="color: red; font-weight: bold;">*</span></label>
+                                        <label for="beneficiario_id">{{ __('Beneficiário') }}</label>
                                         <select name="beneficiario_id" id="beneficiario_id"
                                             class="form-control selectpicker @error('beneficiario_id') is-invalid @enderror"
-                                            data-live-search="true" required>
-                                            <option value="" disabled>-- {{ __('Selecione o Beneficiário') }} --
-                                            </option>
+                                            data-live-search="true">
+                                            <option value="" @if (!old('beneficiario_id', $aracao->beneficiario_id)) selected @endif disabled>-- {{ __('Selecione o Beneficiário') }} --</option>
                                             @foreach ($beneficiarios as $beneficiario)
                                                 <option @if (old('beneficiario_id', $aracao->beneficiario_id) == $beneficiario->id) selected @endif
                                                     value="{{ $beneficiario->id }}">{{ $beneficiario->nome }}</option>
@@ -88,4 +112,4 @@
         </script>
     @endpush --}}
     @endsection
-    </x-guest-layout>
+</x-app-layout>

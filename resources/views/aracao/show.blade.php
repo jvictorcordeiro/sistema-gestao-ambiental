@@ -12,62 +12,65 @@
             <div class="col-md-12">
                 <div class="card card-borda-esquerda" style="width: 100%;">
                     <div class="card-body">
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <label for="cultura">{{ __('Cultura') }}<span style="color: red; font-weight: bold;">*</span></label>
-                                    <input id="cultura" class="form-control" type="string" name="cultura" value="{{ $aracao->cultura }}" readonly>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="ponto_localizacao">{{ __('Ponto de Referência') }}<span style="color: red; font-weight: bold;">*</span></label>
-                                    <input id="ponto_localizacao" class="form-control" type="string" name="ponto_localizacao" value="{{ $aracao->ponto_localizacao }}" readonly>
-                                </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="solicitante">{{ __('Solicitante') }}</label>
+                                <input id="solicitante" class="form-control" type="text" name="solicitante" value="{{ $aracao->solicitante }}" readonly>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <label for="quantidade_horas">{{ __('Quantidade de Horas') }}<span style="color: red; font-weight: bold;">*</span></label>
-                                    <input id="quantidade_horas" class="form-control" type="string" name="quantidade_horas" value="{{ $aracao->quantidade_horas }}" readonly>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="quantidade_horas">{{ __('Quantidade de Ha') }}<span style="color: red; font-weight: bold;">*</span></label>
-                                    <input id="quantidade_horas" class="form-control" type="string" name="quantidade_horas" value="{{ $aracao->quantidade_horas }}" readonly>
-                                </div>
+                            <div class="col-md-6 form-group">
+                                <label for="cultura">{{ __('Cultura') }}</label>
+                                <input id="cultura" class="form-control" type="text" name="cultura" value="{{ $aracao->cultura }}" readonly>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <label for="beneficiario">{{ __('Beneficiário') }}</label>
-                                    <input id="beneficiario" class="form-control" type="string" name="beneficiario" value="{{ $aracao->beneficiario->nome }}" readonly>
-                                </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="ponto_localizacao">{{ __('Ponto de Referência') }}</label>
+                                <input id="ponto_localizacao" class="form-control" type="text" name="ponto_localizacao" value="{{ $aracao->ponto_localizacao }}" readonly>
                             </div>
+                            <div class="col-md-6 form-group">
+                                <label for="quantidade_ha">{{ __('Quantidade de Ha') }}</label>
+                                <input id="quantidade_ha" class="form-control" type="text" name="quantidade_ha" value="{{ $aracao->quantidade_ha }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="quantidade_horas">{{ __('Quantidade de Horas') }}</label>
+                                <input id="quantidade_horas" class="form-control" type="text" name="quantidade_horas" value="{{ $aracao->quantidade_horas }}" readonly>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="beneficiario">{{ __('Beneficiário') }}</label>
+                                <input id="beneficiario" class="form-control" type="text" name="beneficiario" value="{{ optional($aracao->beneficiario)->nome ?? '-' }}" readonly>
+                            </div>
+                        </div>
 
-                            <hr class="divisor">
-                                <div class="form-row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="distrito">{{ __('Distrito') }}</label>
-                                        <input id="distrito" class="form-control" type="string" name="distrito" value="{{ $aracao->beneficiario->endereco->distrito }}" readonly>
-                                    </div>
-
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="comunidade">{{ __('Comunidade') }}</label>
-                                        <input id="comunidade" class="form-control" type="string" name="comunidade" value="{{ $aracao->beneficiario->endereco->comunidade }}" readonly>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="numero">{{ __('Número') }}</label>
-                                        <input id="numero" class="form-control" type="string" name="numero" value="{{ $aracao->beneficiario->endereco->numero }}" readonly>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="cidade">{{ __('Cidade') }}</label>
-                                        <input id="cidade" class="form-control" type="string" name="cidade" value="{{ $aracao->beneficiario->endereco->cidade }}" readonly>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="uf">{{ __('Estado') }}</label>
-                                        <input id="uf" class="form-control" type="string" name="uf" value="{{ $aracao->beneficiario->endereco->estado }}" readonly>
-                                    </div>
-                                </div>
-                            <hr class="divisor">
+                        <hr class="divisor">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="distrito">{{ __('Distrito') }}</label>
+                                <input id="distrito" class="form-control" type="text" name="distrito" value="{{ optional(optional($aracao->beneficiario)->Endereco)->distrito ?? '-' }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="comunidade">{{ __('Comunidade') }}</label>
+                                <input id="comunidade" class="form-control" type="text" name="comunidade" value="{{ optional(optional($aracao->beneficiario)->Endereco)->comunidade ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="numero">{{ __('Número') }}</label>
+                                <input id="numero" class="form-control" type="text" name="numero" value="{{ optional(optional($aracao->beneficiario)->Endereco)->numero ?? '-' }}" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label for="cidade">{{ __('Cidade') }}</label>
+                                <input id="cidade" class="form-control" type="text" name="cidade" value="{{ optional(optional($aracao->beneficiario)->Endereco)->cidade ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="uf">{{ __('Estado') }}</label>
+                                <input id="uf" class="form-control" type="text" name="uf" value="{{ optional(optional($aracao->beneficiario)->Endereco)->estado ?? '-' }}" readonly>
+                            </div>
+                        </div>
+                        <hr class="divisor">
                         @if ($aracao->fotos->isNotEmpty())
                             <div class="form-row">
                                 <div class="col-md-12">

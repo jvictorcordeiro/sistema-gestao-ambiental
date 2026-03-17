@@ -20,7 +20,7 @@ class AracaoController extends Controller
     {
         $this->authorize('isSecretarioOrBeneficiario', User::class);
 
-        $query = Aracao::query();
+        $query = Aracao::with(['beneficiario.Endereco']);
 
         $query->when(
             $request->filled('buscar') && $request->filled('filtro'),
@@ -61,7 +61,7 @@ class AracaoController extends Controller
     {
         $this->authorize('isSecretarioOrBeneficiario', User::class);
 
-        $aracao = Aracao::with('fotos')->findOrFail($id);
+        $aracao = Aracao::with(['beneficiario.Endereco', 'fotos'])->findOrFail($id);
 
         return view('aracao.show', compact('aracao'));
     }

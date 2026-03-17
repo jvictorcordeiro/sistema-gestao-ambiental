@@ -72,6 +72,7 @@
                                                     <tr>
                                                         <th scope="col">Beneficiário</th>
                                                         <th scope="col">Código</th>
+                                                        <th scope="col">Solicitante</th>
                                                         <th scope="col">Cultura</th>
                                                         <th scope="col">Localização</th>
                                                         <th scope="col">Hectares</th>
@@ -82,10 +83,11 @@
                                                 <tbody>
                                                     @foreach ($aracao as $item)
                                                         <tr>
-                                                            <td>{{ $item->beneficiario->nome }}</td>
-                                                            <td>{{ $item->beneficiario->codigo }}</td>
+                                                            <td>{{ optional($item->beneficiario)->nome ?? '-' }}</td>
+                                                            <td>{{ optional($item->beneficiario)->codigo ?? '-' }}</td>
+                                                            <td>{{ $item->solicitante ?? '-' }}</td>
                                                             <td>{{ $item->cultura }}</td>
-                                                            <td>{{ $item->beneficiario->Endereco->comunidade }}</td>
+                                                            <td>{{ optional(optional($item->beneficiario)->Endereco)->comunidade ?? '-' }}</td>
                                                             <td>{{ $item->quantidade_ha }}</td>
                                                             <td>{{ $item->quantidade_horas }}</td>
                                                             <td>
@@ -165,7 +167,7 @@
                                     <form id="deletar-aracao-form-{{$item->id}}" method="POST" action="{{route('aracao.destroy', ['id' => $item->id])}}">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        Tem certeza que deseja deletar o aração do beneficiário {{$item->beneficiario->nome}}?
+                                        Tem certeza que deseja deletar o aração do beneficiário {{ optional($item->beneficiario)->nome ?? 'não informado' }}?
                                     </form>
                                 </div>
                                 <div class="modal-footer">
